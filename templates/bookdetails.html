@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% block content %}
+<form class="mt-1" action="{{ url_for('bookdetails',book_number=book.book_number) }}" method="post">
+<div class="row">
+
+<div class="col-xl-6">
+<table class="table table-striped">
+  <tr>
+    <th>Book Number:</th>
+    <td> {{ book.book_number }} </td>
+  </tr>
+  <tr>
+    <th>Title:</th>
+    <td> {{ book.title }} </td>
+  </tr>
+  <tr>
+    <th>Author:</th>
+    <td> {{ book.author }} </td>
+  </tr>
+  <tr>
+    <th>Genre:</th>
+    <td> {{ book.genre }} </td>
+  </tr>
+  <tr>
+    <th>Description:</th>
+    <td> {{ book.description }} </td>
+  </tr>
+  <tr>
+    <th>Pages:</th>
+    <td> {{ book.pages }} </td>
+  </tr>
+  <tr>
+    <th>Condition:</th>
+    <td> {{ book.condition }} </td>
+  </tr>
+  <tr>
+    <th>Cover:</th>
+    <td> {{ book.cover }} </td>
+  </tr>
+
+</table>
+</div>
+{% if current_user.email!= book.email %}
+<div class="col-xl-6">
+<table class="table table-striped">
+  <tr>
+    <th>Listed By:</th>
+    <td> {{ reader.fname }} {{ reader.lname }} </td>
+  </tr>
+  <tr>
+    <th>Address Line1:</th>
+    <td> {{ reader.add1 }} </td>
+  </tr>
+  {% if reader. add2 %}
+  <tr>
+    <th>Address Line1:</th>
+    <td> {{ reader.add2 }} </td>
+  </tr>
+  {% endif %}
+  <tr>
+    <th>Postal Code:</th>
+    <td> {{ reader.postalcode }} </td>
+  </tr>
+</table>
+</div>
+
+
+</div>
+<div class="container mt-3 text-center">
+  <button type="submit" class="btn ml-auto btn-lg btn-primary">Buy Book</button>
+</div>
+{% endif %}
+</form>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h4>Welcome {{ current_user.fname }} {{ current_user.lname }}</h4>
+<div class="row">
+
+  <div class="col-xl-9">
+    <div class="container mt-3">
+      <h5>Here are the statistics of your books trades</h5>
+    </div>
+    <div class="container mt-3">
+    <h5>Number of Books Sold: {{ data['books_sold'] }}</h5>
+    </div>
+    <div class="container mt-3">
+    <h5>Number of Books Bought: {{ data['books_bought'] }}</h5>
+    </div>
+    <div class="container mt-3">
+    <h5>Number of Books for Sale: {{ data['books_listed'] }}</h5>
+    </div>
+
+  </div>
+  <div class="col-xl-3">
+    <div class="container">
+      <a class='btn btn-lg btn-primary' style='width:200px' href="{{ url_for('listbook')}}">List Book</a>
+    </div>
+
+    <div class="container mt-3">
+      <a class='btn btn-lg btn-primary' style='width:200px' href="{{ url_for('mybooks')}}">My Books</a>
+    </div>
+
+    <div class="container mt-3">
+      <a class='btn btn-lg btn-primary' style='width:200px' href="{{ url_for('buybook')}}">Buy Book</a>
+    </div>
+
+    <div class="container mt-3">
+      <a class='btn btn-lg btn-primary' style='width:200px' href="{{ url_for('tradehistory')}}">Trade History</a>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

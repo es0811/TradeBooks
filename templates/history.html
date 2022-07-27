@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Trade Number</th>
+      <th scope="col">Your Role</th>
+      <th scope="col">Date</th>
+      <th scope="col">Book Title</th>
+      <th scope="col">Counterparty</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for trade in trades %}
+    <tr>
+      <td>{{ trade.trade_number }}</td>
+      <td>{{ trade.role }}</td>
+      <td>{{ trade.date }}</td>
+      <td>{{ trade.book_title }}</td>
+      <td>{{ trade.counterparty_email }}</td>
+
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+
+{% endblock %}

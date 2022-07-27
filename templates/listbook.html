@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-xl-9">
+    <form class="mt-1" action="{{ url_for('listbook') }}" method="post">
+      <div class="mb-3">
+        <label for="title" class="form-label">Book Title</label>
+        <input type="text" name='title' class="form-control" id="title" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" name='author' class="form-control" id="author" required>
+      </div>
+
+    <div class="mb-3">
+      <label for="genre" class="form-label">Genre</label>
+      <select class="form-control form-select" name="genre" id="genre">
+        <option value="Classics">Classics</option>
+          <option value="Tragedy">Tragedy</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Action and Adventure">Action and Adventure</option>
+          <option value="Crime & Mystery">Crime & Mystery</option>
+          <option value="Romance">Romance</option>
+          <option value="Humor and Satire<">Humor and Satire</option>
+          <option value="Horror">Horror</option>
+          <option value="Comics">Comics</option>
+          <option value="Biography and Autobiography">Biography and Autobiography</option>
+          <option value="Memoirs">Memoirs</option>
+          <option value="Cookbooks">Cookbooks</option>
+          <option value="True Stories">True Stories</option>
+          <option value="Self Help">Self Help</option>
+          <option value="Textbooks">Textbooks</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="pages" class="form-label">Number of pages</label>
+      <input type="number" name='pages' class="form-control" id="pages" value=100 required>
+    </div>
+
+    <div class="mb-3">
+      <label for="condition" class="form-label">Condition</label>
+      <select class="form-control form-select" name="condition" id="condition">
+        <option value="Never Used">Never Used</option>
+          <option value="Lightly Used">Lightly Used</option>
+          <option value="Moderately Used">Moderately Used</option>
+          <option value="Heavily Used">Heavily Used</option>
+          <option value="Some missing pages">Some missing pages</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="cover" class="form-label">Cover Type</label>
+      <select class="form-control form-select" name="cover" id="cover">
+        <option value="Hard Cover">Hard Cover</option>
+        <option value="Paper Back">Paper Back</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" name="description" id='description' rows="8" cols="80"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="cost" class="form-label">Cost (in USD)</label>
+      <input type="number" name='cost' class="form-control" id="cost" value=100 required>
+    </div>
+    <div class="container mb-3">
+      <button type="submit" class="btn ml-auto btn-lg btn-primary">List Book</button>
+    </div>
+
+    </form>
+
+  </div>
+
+</div>
+{% endblock %}
