@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-xl-6">
+    <form class="mt-1" action="{{ url_for('search') }}" method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Search By Title:</label>
+      <input type="text" name='title' class="form-control" id="title">
+    </div>
+
+  </div>
+
+  <div class="col-xl-6">
+    <form class="mt-1" action="{{ url_for('search') }}" method="post">
+    <div class="mb-3">
+      <label for="genre" class="form-label">Search By Genre:</label>
+      <input type="text" name='genre' class="form-control" id="genre">
+    </div>
+
+  </div>
+  <div class="container text-center">
+    <button style='width:200px  ' type="submit" class="btn btn-primary">Search</button>
+  </div>
+
+</div>
+
+
+</form>
+{% if books!= None %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Book Number</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Trade Type</th>
+      <th scope="col">More Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{ book.book_number }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.genre }}</td>
+      <td>{{ book.trade_type }}</td>
+      <td><a href="{{ url_for('bookdetails',book_number=book.book_number )}}">Details</a></td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

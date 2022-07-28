@@ -124,6 +124,20 @@ def buybook():
     conn.close()
     return render_template('buybook.html',Title='Buy Books',books=books)
 
+@app.route('/search',methods=['POST','GET'])
+@login_required
+def search():
+    conn=connect()
+    books=None
+    if request.method=='POST':
+        if request.form['title']:
+            books=buy_book_list_bytitle(conn,current_user.email,request.form['title'])
+        elif request.form['genre']:
+            books=buy_book_list_bygenre(conn,current_user.email,request.form['genre'])
+        else: flash('Please select a suitable serach criteria','danger')
+        conn.close()
+    return render_template('search.html',Title='Search Books',books=books)
+
 
 @app.route('/tradehistory')
 @login_required
