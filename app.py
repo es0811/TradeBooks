@@ -8,11 +8,13 @@ from mybooks import *
 from tradebooks import *
 from trade import *
 
+#Login Manager to keep a track of the currently logged in used
 login_manager = LoginManager()
 app = Flask(__name__)
 login_manager.init_app(app)
 app.secret_key = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
 
+#Login Manager returns the currently logged in user as an object
 @login_manager.user_loader
 def load_user(email):
     conn=connect()
@@ -20,11 +22,14 @@ def load_user(email):
     conn.close()
     return reader
 
+#Home page (defualt page)
 @app.route("/",methods=['GET', 'POST'])
 @app.route("/login",methods=['GET', 'POST'])
 def login():
+    # if the user is already logged in, redirect to the dashboard
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
+    #if the login button is pressed, do the following
     if request.method == 'POST':
         conn=connect()
         if conn is None:
@@ -40,6 +45,7 @@ def login():
         return redirect(url_for('dashboard'))
     return render_template('login.html')
 
+#The task to be executed when the register page is loaded and pressed
 @app.route("/register",methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -72,6 +78,7 @@ def dashboard():
     conn.close()
     return render_template('dashboard.html',Title='Dashboard',data=data)
 
+#Page to list the book for trading
 @login_required
 @app.route('/listbook',methods=['POST','GET'])
 def listbook():
@@ -87,7 +94,7 @@ def listbook():
         conn.close()
     return render_template('listbook.html',Title='List Your Book')
 
-
+# View all the available books which have been listed
 @app.route('/mybooks')
 @login_required
 def mybooks():
@@ -96,7 +103,7 @@ def mybooks():
     conn.close()
     return render_template('mybooks.html',Title='My Books',books=books)
 
-
+# Give details of each book when detail button is pressed
 @app.route('/bookdetails/<book_number>',methods=['POST','GET'])
 @login_required
 def bookdetails(book_number):
@@ -115,7 +122,7 @@ def bookdetails(book_number):
     conn.close()
     return render_template('bookdetails.html',Title='Book Details',book=book, reader=reader)
 
-
+#Action to be carried out when the buy book button is pressed
 @app.route('/buybook')
 @login_required
 def buybook():
@@ -124,6 +131,7 @@ def buybook():
     conn.close()
     return render_template('buybook.html',Title='Buy Books',books=books)
 
+#Search for the books either by title or by genre
 @app.route('/search',methods=['POST','GET'])
 @login_required
 def search():
@@ -139,6 +147,7 @@ def search():
     return render_template('search.html',Title='Search Books',books=books)
 
 
+#View the trading history of the books
 @app.route('/tradehistory')
 @login_required
 def tradehistory():
@@ -147,13 +156,14 @@ def tradehistory():
     conn.close()
     return render_template('history.html',Title='Trading History',trades=trades)
 
-
+#Lougout the user
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
+#Redirect to login if an unauthorized attempt is made to load the page
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     return redirect(url_for('login'))

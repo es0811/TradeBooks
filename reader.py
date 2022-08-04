@@ -22,6 +22,7 @@ class Reader:
     def get_id(self):
         return str(self.email)
 
+#This method returns the object user for the email id
     @staticmethod
     def get(conn,email):
         cursor=conn.cursor()
@@ -32,6 +33,7 @@ class Reader:
             reader=Reader(user[0],user[1],None,user[2],user[3],user[4],user[5],user[6],user[7],user[8],user[9],user[10])
         return reader
 
+#This function verifies if the username and the password are correct.
     @staticmethod
     def validate_credentials(conn,email,password):
         cursor=conn.cursor()

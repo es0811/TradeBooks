@@ -1,4 +1,5 @@
 import re
+#validate the user credentials when the user is registering
 def input_validation(conn,email, username):
     print(email)
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -30,6 +31,7 @@ def input_validation(conn,email, username):
     cursor.close()
     return True,''
 
+#Once the validation is performed, the register user function will execute query to insert the user in the database.
 def register_user(conn,reader):
     cursor=conn.cursor()
     try:

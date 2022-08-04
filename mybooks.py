@@ -1,5 +1,7 @@
 from book import *
 
+
+#List all books currently listed by the user and the books are available
 def list_all_books(conn,email):
     cursor=conn.cursor()
     try:
@@ -17,7 +19,7 @@ def list_all_books(conn,email):
         cursor.close()
         return None
 
-
+# Returns an object of the type book basesd on book number
 def get_book(conn,book_number):
     cursor=conn.cursor()
     try:
@@ -31,6 +33,8 @@ def get_book(conn,book_number):
         cursor.close()
         return None
 
+#Lists all the books which are currently available for trading. This will show up books only available and listed...
+#...by other users
 def buy_book_list(conn,email):
     cursor=conn.cursor()
     try:
@@ -48,6 +52,7 @@ def buy_book_list(conn,email):
         cursor.close()
         return None
 
+#Displays books currently sold for the user who's email is email
 def buy_book_list_bytitle(conn,email,title):
     cursor=conn.cursor()
     try:
@@ -66,6 +71,7 @@ def buy_book_list_bytitle(conn,email,title):
         cursor.close()
         return None
 
+#Lists all books available for trading when searched by genre
 def buy_book_list_bygenre(conn,email,genre):
     cursor=conn.cursor()
     try:
@@ -82,6 +88,7 @@ def buy_book_list_bygenre(conn,email,genre):
         cursor.close()
         return None
 
+#This task is executed when the buy book button is pressed.
 def buy_book(conn,book,email):
     cursor=conn.cursor()
     try:

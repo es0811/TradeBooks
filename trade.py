@@ -6,6 +6,7 @@ class Trade:
         self.book_title=book_title
         self.counterparty_email=counterparty
 
+#This displays the trade history of the books that have been sold or purchased by the user.
 def get_trade(conn,email):
     cursor=conn.cursor()
     cursor.execute('SELECT alltrades.trade_number as tm, CASE \
@@ -19,12 +20,13 @@ def get_trade(conn,email):
         END AS r, alltrades.trade_date as d,book.title as t,alltrades.email as e FROM alltrades JOIN book ON book.book_number=alltrades.book_number WHERE book.email=%s',(email,email,email,email,))
     trades=cursor.fetchall()
     alltrades=[]
-    print(trades)
+    # print(trades)
     for t in trades:
         alltrades.append(Trade(t[0],t[1],t[2],t[3],t[4]))
     cursor.close()
     return alltrades
 
+#This function counts all the books bought by the user.
 def books_bought(conn,email):
     cursor=conn.cursor()
     cursor.execute('SELECT COUNT(*) FROM alltrades WHERE email=%s',(email,))
@@ -32,6 +34,7 @@ def books_bought(conn,email):
     cursor.close()
     return count
 
+#This function counts all the books sold by the user
 def books_sold(conn,email):
     cursor=conn.cursor()
     cursor.execute('SELECT COUNT(*) FROM book WHERE email=%s and trade_type=%s',(email,'Sold'))

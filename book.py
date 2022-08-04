@@ -12,6 +12,7 @@ class Book:
         self.trade_type=trade_type
         self.cost=cost
 
+#Function that will list a new book so that it will be available for trading
     def list(self,conn):
         cursor=conn.cursor()
         print('cost')

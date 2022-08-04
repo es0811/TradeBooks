@@ -29,3 +29,12 @@ Project Readme
   8. The details on the command prompt will provide the server address of the hosted webserver as shown below:
   ‘Running on http://127.0.0.1:5000 (Press CTRL+C to quit)’
   9. Use any web browser and navigate to the address above.
+
+
+Explanation of the Application:
+This application allows book readers to sell and buy books online.
+Firstly, the user has to register themselves using the register option.
+The user has to login and upon successfull login, the user will be directed to the dashboard.
+On the dashboard, the user will be able to see statistics about the number of books bought, sold, and listed.
+The user can list new books. Details related to the book will be needed here (the title, the author as well as the price at which the user intends to sell the book.)
+The user can also search for books. The books can be searched by title or by the genre.
